@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>🎉 Happy Birthday Tracy! 🎉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Start Button */
+        .start-btn {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #333;
+            border: none;
+            padding: 20px 40px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            animation: pulse 2s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+
+        .start-btn:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .start-btn:active {
+            transform: translate(-50%, -50%) scale(0.95);
+        }
+
+        .start-btn.hidden {
+            display: none;
+        }
+
+        /* Heart Message Cards */
+        .heart-card {
+            position: fixed;
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: scale(0);
+            z-index: 100;
+            animation: cardAppear 0.8s ease forwards;
+            max-width: 120px;
+            text-align: center;
+            border: 2px solid #ff6b9d;
+        }
+
+        .heart-card::before {
+            content: '❤️';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px;
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            padding: 0 5px;
+        }
+
+        .heart-card .message {
+            color: #333;
+            font-size: 0.9em;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-top: 5px;
+        }
+
+        /* Main Birthday Message - Heart Shape */
+        .main-message {
+            position: fixed;
+            top: 48%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            max-width: 90%;
+            width: 180px;
+            height: 160px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 
+                        0 0 30px rgba(255, 107, 157, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            opacity: 0;
+            z-index: 200;
+            animation: mainHeartAppear 1.2s ease 3s forwards;
+            backdrop-filter: blur(10px);
+            
+            /* Heart shape using CSS */
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+        
+        .main-message .content {
+            transform: rotate(45deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 10px;
+        }
+
+        .main-message h1 {
+            font-size: 1.1em;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+        }
+
+        .main-message p {
+            font-size: 0.7em;
+            line-height: 1.2;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            font-weight: 500;
+        }
+
+        .main-message .final-wish {
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-top: 5px;
+            color: #ffd700;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        .main-message .signature {
+            font-size: 0.7em;
+            font-style: italic;
+            margin-top: 8px;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Floating Hearts Background */
+        .floating-heart {
+            position: fixed;
+            font-size: 1.5em;
+            opacity: 0.3;
+            pointer-events: none;
+            animation: floatHeart 6s ease-in-out infinite;
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.05); }
+        }
+
+        @keyframes cardAppear {
+            0% {
+                opacity: 0;
+                transform: scale(0) rotate(180deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2) rotate(90deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        @keyframes mainHeartAppear {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) rotate(-45deg) scale(0);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) rotate(-45deg) scale(1);
+            }
+        }
+
+        @keyframes floatHeart {
+            0%, 100% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-20px) translateX(10px) rotate(5deg);
+            }
+            50% {
+                transform: translateY(-10px) translateX(-10px) rotate(-5deg);
+            }
+            75% {
+                transform: translateY(-30px) translateX(5px) rotate(3deg);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4),
+                            0 0 20px rgba(255, 215, 0, 0.5);
+            }
+            50% {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4),
+                            0 0 30px rgba(255, 215, 0, 0.8);
+            }
+        }
+
+        /* Universal Responsive Design - Same on all devices */
+
+        /* Stars Background */
+        .star {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Start Button -->
+    <button class="start-btn" id="startBtn">🎂 Click for Tracy's Birthday Surprise! 🎂</button>
+
+    <!-- Main Birthday Message -->
+    <div class="main-message" id="mainMessage">
+        <div class="content">
+            <h1>🎉 Happy Birthday Tracy! 🎉</h1>
+            <p>Dear Tracy, from the beautiful Philippines to wherever you are today, your smile lights up every room!</p>
+            <p>May your special day be filled with love, joy, and endless happiness!</p>
+            <div class="final-wish">🌟 Wishing you the happiest birthday! 🌟</div>
+            <div class="signature">— Tong</div>
+        </div>
+    </div>
+
+    <script>
+        const startBtn = document.getElementById('startBtn');
+        const mainMessage = document.getElementById('mainMessage');
+
+        // Birthday wishes for heart cards
+        const birthdayWishes = [
+            "Happy Birthday!",
+            "You're Amazing!",
+            "Stay Beautiful!",
+            "Dream Big!",
+            "Love Always!",
+            "Shine Bright!",
+            "Be Happy!",
+            "You're Special!",
+            "Forever Young!",
+            "Best Wishes!",
+            "Celebrate Life!",
+            "Joy & Laughter!",
+            "Sweet Dreams!",
+            "Precious Friend!",
+            "Wonderful You!",
+            "Happy Times!",
+            "Love & Light!",
+            "Blessed Day!",
+            "Amazing Soul!",
+            "Perfect Day!",
+            "Sweet Smile!",
+            "Happy Heart!",
+            "Dream Come True!",
+            "Lovely Friend!",
+            "Best Year!"
+        ];
+
+        // Heart shape coordinates (universal scaling)
+        function getHeartPositions() {
+            const vw = window.innerWidth;
+            const vh = window.innerHeight;
+            const centerX = vw / 2;
+            const centerY = vh / 2;
+            
+            // Use a fixed scale based on viewport minimum to maintain consistency
+            const baseSize = 800; // Base reference size
+            const scale = Math.min(vw, vh) / baseSize;
+            
+            // Heart shape using parametric equations - create hollow heart with center gap
+            const positions = [];
+            const points = 25; // Number of points for heart shape
+            
+            for (let i = 0; i < points; i++) {
+                const t = (i / points) * 2 * Math.PI;
+                const x = 16 * Math.pow(Math.sin(t), 3);
+                const y = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
+                
+                // Create a hollow heart by avoiding center positions
+                const distanceFromCenter = Math.sqrt(x * x + y * y);
+                
+                // Only place cards if they're far enough from center (avoiding overlap with middle card)
+                if (distanceFromCenter > 8) {
+                    // Increase scale to make heart larger but avoid center
+                    const adjustedScale = scale * 20;
+                    
+                    // Apply consistent scaling across all devices
+                    positions.push({
+                        x: centerX + x * adjustedScale,
+                        y: centerY + y * adjustedScale - 30 // Move heart up more
+                    });
+                }
+            }
+            
+            return positions;
+        }
+
+        // Create stars background
+        function createStars() {
+            for (let i = 0; i < 30; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                document.body.appendChild(star);
+            }
+        }
+
+        // Create floating hearts background
+        function createFloatingHearts() {
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.textContent = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.top = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 6 + 's';
+                heart.style.fontSize = (1 + Math.random() * 1.5) + 'em';
+                document.body.appendChild(heart);
+            }
+        }
+
+        // Create heart cards in heart shape
+        function createHeartCards() {
+            const positions = getHeartPositions();
+            
+            positions.forEach((pos, index) => {
+                setTimeout(() => {
+                    const card = document.createElement('div');
+                    card.className = 'heart-card';
+                    
+                    const message = document.createElement('div');
+                    message.className = 'message';
+                    message.textContent = birthdayWishes[index % birthdayWishes.length];
+                    
+                    card.appendChild(message);
+                    card.style.left = pos.x + 'px';
+                    card.style.top = pos.y + 'px';
+                    card.style.animationDelay = '0s';
+                    
+                    document.body.appendChild(card);
+                }, index * 150); // Staggered appearance
+            });
+        }
+
+        // Start button click handler
+        startBtn.addEventListener('click', () => {
+            startBtn.classList.add('hidden');
+            createHeartCards();
+        });
+
+        // Initialize background
+        createStars();
+        createFloatingHearts();
+    </script>
+</body>
+</html>
