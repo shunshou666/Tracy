@@ -57,15 +57,30 @@
             position: fixed;
             background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
             border-radius: 15px;
-            padding: 15px;
+            padding: 12px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
             opacity: 0;
             transform: scale(0);
             z-index: 100;
             animation: cardAppear 0.8s ease forwards;
-            max-width: 120px;
+            max-width: 100px;
             text-align: center;
             border: 2px solid #ff6b9d;
+        }
+
+        /* Mobile heart card adjustments */
+        @media (max-width: 768px) {
+            .heart-card {
+                max-width: 85px;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .heart-card {
+                max-width: 70px;
+                padding: 8px;
+            }
         }
 
         .heart-card::before {
@@ -74,17 +89,38 @@
             top: -10px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 20px;
+            font-size: 18px;
             background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
             padding: 0 5px;
         }
 
         .heart-card .message {
             color: #333;
-            font-size: 0.9em;
+            font-size: 0.8em;
             font-weight: 600;
             line-height: 1.2;
             margin-top: 5px;
+        }
+
+        /* Mobile heart card font adjustments */
+        @media (max-width: 768px) {
+            .heart-card::before {
+                font-size: 16px;
+            }
+            
+            .heart-card .message {
+                font-size: 0.7em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .heart-card::before {
+                font-size: 14px;
+            }
+            
+            .heart-card .message {
+                font-size: 0.6em;
+            }
         }
 
         /* Main Birthday Message - Heart Shape */
@@ -95,11 +131,11 @@
             transform: translate(-50%, -50%);
             background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
             color: white;
-            padding: 20px;
+            padding: 15px;
             text-align: center;
             max-width: 90%;
-            width: 180px;
-            height: 160px;
+            width: 140px;
+            height: 120px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 
                         0 0 30px rgba(255, 107, 157, 0.3);
             border: 2px solid rgba(255, 255, 255, 0.3);
@@ -120,12 +156,37 @@
             justify-content: center;
             align-items: center;
             height: 100%;
-            padding: 10px;
+            padding: 8px;
+        }
+
+        /* Mobile-specific adjustments */
+        @media (max-width: 768px) {
+            .main-message {
+                width: 120px;
+                height: 100px;
+                padding: 12px;
+            }
+            
+            .main-message .content {
+                padding: 6px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-message {
+                width: 100px;
+                height: 85px;
+                padding: 10px;
+            }
+            
+            .main-message .content {
+                padding: 4px;
+            }
         }
 
         .main-message h1 {
-            font-size: 1.1em;
-            margin-bottom: 5px;
+            font-size: 0.9em;
+            margin-bottom: 3px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
             background: linear-gradient(45deg, #ffd700, #ffed4e);
             -webkit-background-clip: text;
@@ -135,28 +196,73 @@
         }
 
         .main-message p {
-            font-size: 0.7em;
-            line-height: 1.2;
-            margin-bottom: 5px;
+            font-size: 0.55em;
+            line-height: 1.1;
+            margin-bottom: 3px;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
             font-weight: 500;
         }
 
         .main-message .final-wish {
-            font-size: 0.8em;
+            font-size: 0.65em;
             font-weight: bold;
-            margin-top: 5px;
+            margin-top: 3px;
             color: #ffd700;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
             animation: glow 2s ease-in-out infinite;
         }
 
         .main-message .signature {
-            font-size: 0.7em;
+            font-size: 0.6em;
             font-style: italic;
-            margin-top: 8px;
+            margin-top: 5px;
             color: rgba(255, 255, 255, 0.9);
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Mobile font adjustments */
+        @media (max-width: 768px) {
+            .main-message h1 {
+                font-size: 0.8em;
+                margin-bottom: 2px;
+            }
+            
+            .main-message p {
+                font-size: 0.5em;
+                margin-bottom: 2px;
+            }
+            
+            .main-message .final-wish {
+                font-size: 0.6em;
+                margin-top: 2px;
+            }
+            
+            .main-message .signature {
+                font-size: 0.55em;
+                margin-top: 3px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-message h1 {
+                font-size: 0.7em;
+                margin-bottom: 2px;
+            }
+            
+            .main-message p {
+                font-size: 0.45em;
+                margin-bottom: 2px;
+            }
+            
+            .main-message .final-wish {
+                font-size: 0.55em;
+                margin-top: 2px;
+            }
+            
+            .main-message .signature {
+                font-size: 0.5em;
+                margin-top: 2px;
+            }
         }
 
         /* Floating Hearts Background */
@@ -293,15 +399,31 @@
             "Best Year!"
         ];
 
-        // Heart shape coordinates (universal scaling)
+        // Heart shape coordinates (mobile-optimized scaling)
         function getHeartPositions() {
             const vw = window.innerWidth;
             const vh = window.innerHeight;
             const centerX = vw / 2;
             const centerY = vh / 2;
             
-            // Use a fixed scale based on viewport minimum to maintain consistency
-            const baseSize = 800; // Base reference size
+            // Detect mobile devices and adjust scaling accordingly
+            const isMobile = vw < 768 || vh < 768;
+            const aspectRatio = vw / vh;
+            
+            let baseSize, scaleMultiplier, hollowDistance;
+            
+            if (isMobile) {
+                // Mobile optimization: use smaller base size and adjust for aspect ratio
+                baseSize = aspectRatio < 0.6 ? 600 : 700; // Very narrow screens get smaller base
+                scaleMultiplier = aspectRatio < 0.6 ? 18 : 16; // Adjust scale for mobile
+                hollowDistance = aspectRatio < 0.6 ? 10 : 9; // Larger hollow area on narrow screens
+            } else {
+                // Desktop scaling
+                baseSize = 800;
+                scaleMultiplier = 20;
+                hollowDistance = 8;
+            }
+            
             const scale = Math.min(vw, vh) / baseSize;
             
             // Heart shape using parametric equations - create hollow heart with center gap
@@ -317,14 +439,16 @@
                 const distanceFromCenter = Math.sqrt(x * x + y * y);
                 
                 // Only place cards if they're far enough from center (avoiding overlap with middle card)
-                if (distanceFromCenter > 8) {
-                    // Increase scale to make heart larger but avoid center
-                    const adjustedScale = scale * 20;
+                if (distanceFromCenter > hollowDistance) {
+                    // Adjust scale for mobile vs desktop
+                    const adjustedScale = scale * scaleMultiplier;
                     
-                    // Apply consistent scaling across all devices
+                    // Apply vertical adjustment for mobile
+                    const verticalAdjust = isMobile ? (aspectRatio < 0.6 ? -40 : -35) : -30;
+                    
                     positions.push({
                         x: centerX + x * adjustedScale,
-                        y: centerY + y * adjustedScale - 30 // Move heart up more
+                        y: centerY + y * adjustedScale + verticalAdjust
                     });
                 }
             }
